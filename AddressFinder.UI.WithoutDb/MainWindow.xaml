@@ -1,0 +1,48 @@
+﻿<Window x:Class="AddressFinder.UI.WithoutDb.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AddressFinder.UI.WithoutDb"
+        xmlns:Controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Styles/MainStyle.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Window.Resources>
+	<Grid Style="{StaticResource grid_Style}">
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<Controls:AutoCompleteBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
+                ItemsSource="{Binding Addresses}"
+                ValueMemberPath="Name"
+                FilterMode="Contains"
+                SelectedItem="{Binding SelectedAddress, Mode=TwoWay}"
+                Style="{StaticResource autoCompleteBox_Style}">
+			<Controls:AutoCompleteBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Path=Name}" Style="{StaticResource txtBlock_Style}"/>
+					</StackPanel>
+				</DataTemplate>
+			</Controls:AutoCompleteBox.ItemTemplate>
+		</Controls:AutoCompleteBox>
+		<Image Grid.Row="1" Grid.Column="3" Source="/Images/search.png" Style="{StaticResource image_Style}"></Image>
+	</Grid>
+</Window>
